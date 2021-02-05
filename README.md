@@ -16,11 +16,17 @@ end
 ```
 
 
-Currently, just 2 methods are implemented:
-      iex> YoptaDb.put("7dc62817-e855-4568-ac93-d4f0b7f294da",1609892726,21.0)
-      {:ok, "7dc62817-e855-4568-ac93-d4f0b7f294da"}
-      iex> YoptaDb.get("7dc62817-e855-4568-ac93-d4f0b7f294da",1609892726, 1609892730)
-      {:ok, [{1609892726, 21.0},{1609892727", 21.1}]}
+Currently, just 3 methods are implemented:
+
+```elixir
+# connect to C* database and create the keyspace/tables if needed
+{:ok, pid} = YoptaDb.init(["10.88.0.2:9042"], %{:keyspace=> "my_keyspace3", :replication_factor=>1})
+# put the counter
+{:ok, _} = YoptaDb.put(pid, "7dc62817-e855-4568-ac93-d4f0b7f294da",DateTime.to_unix(DateTime.utc_now())*1000,"21.0")
+# get a list of counters ({timestamp, value})
+{:ok, list} = YoptaDb.get(pid, "7dc62817-e855-4568-ac93-d4f0b7f294da", 0, 16098927260000)
+```
+
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
