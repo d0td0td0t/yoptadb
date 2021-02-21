@@ -43,14 +43,14 @@ defmodule YoptaDb do
     {:ok, conn}
   end
 
-  def init(nodes,keyspace) do
+  def init(nodes,config) when is_map(config) do
     {:ok, conn} = Xandra.start_link(nodes: nodes)
-    {:ok, conn} = create_keyspace(conn,keyspace)
+    {:ok, conn} = create_keyspace(conn,config)
   end
 
   defmacro gen_offset(ts) do 
     quote do 
-      rem(unquote(ts),18144000)
+      rem(unquote(ts),18144000000)
     end
   end
 

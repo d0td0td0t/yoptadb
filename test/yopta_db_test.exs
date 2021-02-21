@@ -2,7 +2,7 @@ defmodule YoptaDbTest do
   use ExUnit.Case
   doctest YoptaDb
 
-  test "greets the world" do
-    assert YoptaDb.hello() == :world
+  test "gen_dp_ts" do
+    assert YoptaDb.gen_dp_ts(1612633578000,YoptaDb.gen_offset(1612633578000)) == 1596672000000
   end
 end

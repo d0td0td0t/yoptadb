@@ -2,6 +2,8 @@
 
 **YoptaDB is a simple time series database backed by Scylla or Cassandra**
 
+The design is inspired by KairosDB.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
@@ -15,6 +17,7 @@ def deps do
 end
 ```
 
+## Usage 
 
 Currently, just 3 methods are implemented:
 
@@ -27,6 +30,9 @@ Currently, just 3 methods are implemented:
 {:ok, list} = YoptaDb.get(pid, "7dc62817-e855-4568-ac93-d4f0b7f294da", 0, 16098927260000)
 ```
 
+## ToDo:
+
+Implement the gen_server protocol.
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
